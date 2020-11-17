@@ -17,7 +17,6 @@ let robert = {
         return this[Object.keys(this)[n]];
     }
 };
-
 let all = {
     food: document.getElementById('moodFood'),
     clean: document.getElementById('moodClean'),
@@ -30,6 +29,40 @@ let all = {
     },
 };
 
+function mood() {
+    let image = document.querySelector('.image')
+    Array.from(image.children).forEach(e =>{
+        e.style.display = 'none'
+    })
+    for (let s in robert) {
+        if (robert[s] === robert.food && robert.food <= 30) {
+            console.log('asdasd')
+            all.food.style.display = 'block'
+        }
+        else if (robert[s] === robert.clean && robert.clean <= 30) {
+            all.clean.style.display = 'block'
+        }
+        else if (robert[s] === robert.happy && robert.happy <= 30) {
+            all.run.style.display = 'block'
+        }
+        else if (robert[s] === robert.health && robert.health <= 30) {
+            all.doctor.style.display = 'block'
+        }
+        else if (robert[s] === robert.socialization && robert.socialization <= 30) {
+            all.bar.style.display = 'block'
+        }
+        else if (robert[s] === robert.money && robert.money <= 30) {
+            all.work.style.display = 'block'
+        } 
+    }
+
+
+
+
+};
+
+
+
 function mode(stats) {
     for (let key in robert) {
         robert[key] -= stats;
@@ -38,7 +71,6 @@ function mode(stats) {
 
 function check(arg) {
     let loseMenu = document.querySelector('.lose')
-    mood()
 
     for (let key in robert) {
         if (robert[key] <= 0) {
@@ -60,12 +92,13 @@ function check(arg) {
                 font += 0.5
                 loseMenu.style.fontSize = `${font}px`
             }, 12)
-
         }
         if (robert[key] > 100 && typeof arg === 'undefined') {
             robert[key] = 100;
         }
     }
+    mood()
+    output()
 }
 
 function timeLived() {
@@ -97,23 +130,30 @@ function displayStartMenu() {
 let clickFluffy = document.getElementById('easy');
 clickFluffy.addEventListener('click', function() {
     displayStartMenu()
-    random(50, 100);
+    // random(50, 100);
+    random(40, 50);
+    check()
     interval = setInterval(function() {
         mode(3);
-    }, 5000, 5);
-    setInterval(output, 1);
+        check()
+    }, 5000);
+
     live = setInterval(timeLived, 1000);
-    cheking = setInterval(check, 1);
+
 });
 
 let clickLazy = document.getElementById('hard');
 clickLazy.addEventListener('click', function() {
     displayStartMenu()
     random(50, 70);
-    interval = setInterval(mode, 5000, 5);
-    setInterval(output, 1);
+    check()
+    interval = setInterval(function() {
+        mode(5);
+        check()
+    }, 5000);
+
     live = setInterval(timeLived, 1000);
-    cheking = setInterval(check, 1);
+
 });
 
 
@@ -121,36 +161,43 @@ let clickNinja = document.getElementById('ninja');
 clickNinja.addEventListener('click', function() {
     displayStartMenu()
     random(50, 150);
-    interval = setInterval(mode, 5000, 10);
-    setInterval(output, 1);
+    check()
+    interval = setInterval(function() {
+        mode(10);
+        check()
+        output()
+    }, 5000);
+    // setInterval(output, 1);
     live = setInterval(timeLived, 1000);
-    cheking = setInterval(check, 1, 1);
 });
-
 
 
 let clickEat = document.getElementById('eat');
 clickEat.addEventListener('click', function() {
     robert.food += 40;
     robert.clean -= 30;
+    check()
 });
 
 let clickWash = document.getElementById('wash');
 clickWash.addEventListener('click', function() {
     robert.clean += 40;
     robert.happy -= 20;
+    check()
 });
 
 let clickHappy = document.getElementById('run');
 clickHappy.addEventListener('click', function() {
     robert.happy += 15;
     robert.food -= 10;
+    check()
 });
 
 let visitDoctor = document.getElementById('doctor');
 visitDoctor.addEventListener('click', function() {
     robert.health += 30;
     robert.money -= 20;
+    check()
 });
 
 let goBar = document.getElementById('bar');
@@ -159,6 +206,7 @@ goBar.addEventListener('click', function() {
     robert.money -= 20;
     robert.food += 10;
     robert.health -= 10;
+    check()
 });
 
 let goWork = document.getElementById('work');
@@ -167,6 +215,7 @@ goWork.addEventListener('click', function() {
     robert.money += 50;
     robert.food -= 10;
     robert.health -= 10;
+    check()
 });
 
 // let buyFood = document.getElementById('buy_food');
@@ -181,25 +230,11 @@ startBusiness.addEventListener('click', function() {
     robert.money += 100;
     robert.health -= 100;
     robert.happy += 100;
+    check()
+
 });
 
 let restart = document.getElementById('restart');
 restart.addEventListener('click', function() {
     location.reload();
 });
-
-function mood() {
-    if (robert.food <= 30) {
-        this.food.style.display = 'block'
-    } else if (robert.clean <= 30) {
-        all.clean.style.display = 'block'
-    } else if (robert.happy <= 30) {
-        this.run.style.display = 'block'
-    } else if (robert.health <= 30) {
-        this.doctor.style.display = 'block'
-    } else if (robert.socialization <= 30) {
-        this.bar.style.display = 'block'
-    } else if (robert.money <= 30) {
-        this.work.style.display = 'block'
-    } 
-};
