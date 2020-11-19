@@ -1,14 +1,15 @@
 body {
   margin: 0;
+  overflow-x: hidden;
 }
 
 .container {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -18,6 +19,53 @@ body {
           flex-direction: column;
   position: relative;
   height: 100vh;
+  width: 99vw;
+}
+
+.container .gretta {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  top: 50%;
+  left: -200%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  -webkit-transition: 2s;
+  transition: 2s;
+}
+
+.container .gretta span {
+  display: none;
+  font-size: 35px;
+  margin-bottom: 30px;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: white;
+}
+
+.container .restart {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  z-index: 3;
+  padding: 20px 80px;
+  font-size: 25px;
+  display: none;
 }
 
 .container .types {
@@ -32,16 +80,36 @@ body {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 .container .stats div {
-  margin: 0 70px 0 70px;
+  -ms-flex-preferred-size: 20%;
+      flex-basis: 20%;
+  margin: 10px 30px;
   font-size: 22px;
   font-weight: 500;
 }
 
-.button {
-  padding: 10px 50px;
+.action {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.action .button {
+  -ms-flex-preferred-size: 20%;
+      flex-basis: 20%;
+  padding: 10px;
   margin: 20px;
   font-weight: 600;
   line-height: 30px;
@@ -54,8 +122,16 @@ body {
           box-shadow: 5px 5px 0 #532831;
   outline: none;
   cursor: pointer;
-  -webkit-transition: 1.5s;
-  transition: 1.5s;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+}
+
+.action .button:hover {
+  background-color: #256aff;
+}
+
+.action .button:active {
+  background-color: #004cf1;
 }
 
 .button_2 {
@@ -73,18 +149,26 @@ body {
           box-shadow: 5px 5px 0 #532831;
   outline: none;
   cursor: pointer;
-  -webkit-transition: 1.5s;
-  transition: 1.5s;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+}
+
+.button_2:hover {
+  background-color: #a90404;
+}
+
+.button_2:active {
+  background-color: #770303;
 }
 
 .mode {
   background: #000;
   height: 100vh;
-  width: 100vw;
+  width: 100%;
   position: absolute;
   left: 0;
   top: 0;
-  opacity: 0.6;
+  opacity: 0.8;
   z-index: 2;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -92,9 +176,10 @@ body {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  padding-top: 50px;
 }
 
 .lose {
@@ -119,11 +204,34 @@ body {
   font-size: 22px;
   text-transform: uppercase;
   font-weight: bold;
-  overflow: hidden;
+}
+
+.image {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100vw;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 30%;
+  margin-bottom: 100px;
 }
 
 .image img {
   display: none;
-  width: 400px;
+  width: 150px;
+  -ms-flex-preferred-size: 16%;
+      flex-basis: 16%;
+  height: auto;
 }
 /*# sourceMappingURL=style.css.map */
